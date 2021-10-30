@@ -1,11 +1,11 @@
 <template>
   <q-layout view="lHr lpR fFf">
 
-    <q-header bordered class="bg-primary text-white">
+    <q-header bordered class="bg-white text-black">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold">
           Qwitter
         </q-toolbar-title>
 
@@ -14,6 +14,7 @@
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
       <!-- drawer content -->
+      <q-icon name="font_download" />
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
