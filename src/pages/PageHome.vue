@@ -1,31 +1,24 @@
 <template>
   <q-page >
-    <div class="q-py-lg q-px-md">
-      <q-input bottom-slots
-               v-model="newQweetContent"  placeholder="What's happening?" counter maxlength="280" :dense="dense">
+    <div class="q-py-lg q-px-md row items-end q-col-gutter-md">
+     <div class="col">
+       <q-input class="new-qweet" bottom-slots
+                v-model="newQweetContent"  placeholder="What's happening?" counter maxlength="280" :dense="dense" autogrow>
 
-        <template v-slot:before>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/img/avatar5.jpg">
-          </q-avatar>
-        </template>
+         <template v-slot:before>
+           <q-avatar size="xl">
+             <img src="https://cdn.quasar.dev/img/avatar5.jpg">
+           </q-avatar>
+         </template>
 
-        <template v-slot:append>
-          <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer" />
-          <q-icon name="schedule" />
-        </template>
-
-        <template v-slot:hint>
-          Field hint
-        </template>
-
-        <template v-slot:after>
-          <q-btn round dense flat icon="send" />
-        </template>
-
-      </q-input>
+       </q-input>
+     </div>
+      <div class="col col-shrink">
+        <q-btn class="q-mb-lg" :disable="!newQweetContent" unelevated rounded color="primary" label="Qweet" no-caps  />
+      </div>
     </div>
 
+    <q-separator class="divider" color="grey-2" size="10px"/>
   </q-page>
 </template>
 
@@ -33,6 +26,24 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'PageHome'
+  name: 'PageHome',
+  data(){
+    return{
+      newQweetContent: ''
+    }
+  }
 })
 </script>
+<style lang="sass">
+.new-qweet
+  textarea
+    font-size: 19px
+    line-height: 1.4 !important
+
+.divider
+  border-top: 1px solid
+  border-bottom: 1px solid
+  border-color: $grey-4
+
+
+</style>
