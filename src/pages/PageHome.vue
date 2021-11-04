@@ -66,7 +66,7 @@
 </template>
 
 <script>
-
+import db from 'src/boot/firebase'
 import { defineComponent } from 'vue';
 import { formatDistance } from 'date-fns'
 
@@ -106,6 +106,22 @@ export default defineComponent({
       let index = this.qweets.findIndex(qweet => qweet.date === dateToDelete)
       this.qweets.splice(index,1)
     }
+  },
+  mounted() {
+    db.collection("qweets")
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            console.log("New city: ", change.doc.data());
+          }
+          if (change.type === "modified") {
+            console.log("Modified city: ", change.doc.data());
+          }
+          if (change.type === "removed") {
+            console.log("Removed city: ", change.doc.data());
+          }
+        });
+      });
   }
 })
 </script>
